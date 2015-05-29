@@ -14,8 +14,6 @@ install:
   # Install required ansible roles
   - ansible-galaxy install abelboldu.midonet-repos
   
-  # DELETEME: debug line
-  - ansible localhost -m setup
 
 script:
 # Check the role/playbook's syntax.
