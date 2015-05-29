@@ -8,19 +8,19 @@
 
 - name: Install zookeeperd
   apt: name=zookeeperd
-  when: ubuntu_version != 'precise'
+  when: ansible_distribution_release != 'precise'
 
 - template: src=myid dest=/etc/zookeeper/conf/myid
-  when: ubuntu_version == 'trusty'
+  when: ansible_distribution_release == 'trusty'
 
 - template: src=zoo.cfg dest=/etc/zookeeper/conf/zoo.cfg
-  when: ubuntu_version == 'trusty'
+  when: ansible_distribution_release == 'trusty'
 
 - template: src=myid dest=/var/lib/zookeeper/myid
-  when: ubuntu_version == 'precise'
+  when: ansible_distribution_release == 'precise'
 
 - template: src=zoo.cfg dest=/etc/zookeeper/zoo.cfg
-  when: ubuntu_version == 'precise'
+  when: ansible_distribution_release == 'precise'
   notify:
     - Restart zookeeper
 
