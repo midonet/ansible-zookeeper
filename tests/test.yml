@@ -3,7 +3,5 @@
 - hosts: localhost
   remote_user: root
   roles:
-    - role: abelboldu.midonet-repos
-      midonet_version: 2015.03
     - role: ansible-zookeeper
       zookeeper_hosts: '{{ groups["all"] }}'
