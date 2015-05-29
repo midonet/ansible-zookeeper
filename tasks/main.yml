@@ -1,0 +1,21 @@
+---
+
+- include: redhat.yml
+  when: ansible_os_family == 'RedHat'
+
+- include: debian.yml
+  when: ansible_os_family == 'Debian'
+
+- meta: flush_handlers
+
+- name: Wait for Zookeeper to start
+  wait_for: host=127.0.0.1 port=2181 delay=5 state=present
+
+- name: Check that zookeeper started correctly
+  shell: echo ruok | nc 127.0.0.1 2181
+  register: zk_ruok
+
+- assert:
+    that:
+      - "'imok' in zk_ruok.stdout"
+

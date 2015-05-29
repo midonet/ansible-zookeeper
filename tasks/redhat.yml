@@ -1,0 +1,29 @@
+---
+
+- name: Install Zookeeper (RedHat7)
+  yum: name={{ item }} state=present
+  with_items:
+    - java-1.7.0-openjdk-headless
+    - zookeeper
+    - nmap-ncat
+    - zkdump
+  when: ansible_distribution_version.split(".")[0] == '7'
+
+- name: Install Zookeeper (RedHat6)
+  yum: name={{ item }} state=present
+  with_items:
+    - java-1.7.0-openjdk
+    - zookeeper
+    - nc
+    - zkdump
+  when: ansible_distribution_version.split(".")[0] == '6'
+
+- file: path=/usr/java state=directory
+
+- file: src=/etc/alternatives/jre_openjdk dest=/usr/java/default state=link
+
+- template: src=myid dest=/var/lib/zookeeper/myid
+
+- template: src=zoo.cfg dest=/etc/zookeeper/zoo.cfg
+  notify: 
+    - Restart zookeeper

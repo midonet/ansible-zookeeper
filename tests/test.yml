@@ -1,0 +1,7 @@
+---
+
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ansible-zookeeper
+      zookeeper_hosts: '{{ groups["all"] }}'

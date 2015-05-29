@@ -1,0 +1,28 @@
+---
+
+- name: Install openjdk 7
+  apt: name=openjdk-7-jre-headless state=present
+
+- name: Install Zookeeper
+  apt: name=zookeeper update_cache=yes
+
+- name: Install zookeeperd
+  apt: name=zookeeperd
+  when: ubuntu_version != 'precise'
+
+- template: src=myid dest=/etc/zookeeper/conf/myid
+  when: ubuntu_version == 'trusty'
+
+- template: src=zoo.cfg dest=/etc/zookeeper/conf/zoo.cfg
+  when: ubuntu_version == 'trusty'
+
+- template: src=myid dest=/var/lib/zookeeper/myid
+  when: ubuntu_version == 'precise'
+
+- template: src=zoo.cfg dest=/etc/zookeeper/zoo.cfg
+  when: ubuntu_version == 'precise'
+  notify:
+    - Restart zookeeper
+
+- name: Install zkdump
+  apt: name=zkdump state=present
