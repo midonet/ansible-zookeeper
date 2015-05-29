@@ -8,21 +8,23 @@
 
 - name: Install zookeeperd
   apt: name=zookeeperd
-  when: ansible_distribution_release != 'precise'
 
 - template: src=myid dest=/etc/zookeeper/conf/myid
-  when: ansible_distribution_release == 'trusty'
+  notify:
+    - Restart zookeeper
+
 
 - template: src=zoo.cfg dest=/etc/zookeeper/conf/zoo.cfg
   when: ansible_distribution_release == 'trusty'
-
-- template: src=myid dest=/var/lib/zookeeper/myid
-  when: ansible_distribution_release == 'precise'
-
-- template: src=zoo.cfg dest=/etc/zookeeper/zoo.cfg
-  when: ansible_distribution_release == 'precise'
   notify:
     - Restart zookeeper
+
+
+- template: src=myid dest=/var/lib/zookeeper/myid
+  notify:
+    - Restart zookeeper
+
+- meta: flush_handlers
 
 - name: Install zkdump
   apt: name=zkdump state=present
