@@ -1,6 +1,8 @@
 Zookeeper
 =========
 
+[![Build Status](https://travis-ci.org/abelboldu/ansible-zookeeper.svg?branch=master)](https://travis-ci.org/abelboldu/ansible-zookeeper)
+
 Zookeeper cluster role for MidoNet deployments.
 
 Requirements
