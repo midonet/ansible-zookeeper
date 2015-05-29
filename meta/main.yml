@@ -3,7 +3,7 @@ galaxy_info:
   author: Abel Boldú
   description: Zookeeper cluster role for MidoNet deployments.
   company: Midokura
-  license: license (GPLv2, CC-BY, etc)
+  license: Apache
   min_ansible_version: 1.6
   platforms:
   - name: EL
