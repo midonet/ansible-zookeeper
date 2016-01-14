@@ -4,6 +4,10 @@
   remote_user: root
   roles:
     - role: abelboldu.midonet-repos
-      midonet_version: 2015.03
+      midonet_version: current
     - role: ansible-zookeeper
       zookeeper_hosts: '{{ groups["all"] }}'
+  post_tasks:
+    - name: Check id
+      debug:
+        var: hostvars['localhost']['myid']
