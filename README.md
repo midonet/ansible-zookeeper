@@ -13,14 +13,21 @@ Ubuntu or RedHat/CentOS
 Role Variables
 --------------
 
-`zookeeper` dictionary or group in hosts inventory, each host with it's myid value. See example:
+`zookeeper_hosts` should be a dictionary or group in hosts inventory. 
+`myid` variable will be assigned dynamically across hosts in the group.
+
+Example:
 
 ```
 [zookeeper]
-zk1.midoexample.net myid=1
-zk2.midoexample.net myid=2
-zk3.midoexample.net myid=3
+zk1.midoexample.net
+zk2.midoexample.net
+zk3.midoexample.net
 ```
+```
+zookeeper_hosts: '{{ groups["zookeper"] }}'
+```
+
 
 Dependencies
 ------------

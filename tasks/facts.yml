@@ -1,0 +1,3 @@
+---
+- set_fact:
+    myid: "{{ zookeeper_hosts.index(inventory_hostname)|int + 1 }}"
