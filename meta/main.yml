@@ -17,6 +17,7 @@ galaxy_info:
   categories:
   - cloud
   - database
-  dependencies: 
-  - abelboldu.midonet-repos
+
+dependencies: 
+  - { role: abelboldu.midonet-repos }
   
