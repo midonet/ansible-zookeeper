@@ -1,6 +1,8 @@
 ---
 language: python
 python: "2.7"
+dist: trusty
+
 
 before_install:
 # Make sure everything's up to date.
@@ -12,8 +14,9 @@ install:
   # Add ansible.cfg to pick up roles path.
   - "{ echo '[defaults]'; echo 'roles_path = ../'; } >> ansible.cfg"
   # Install required ansible roles
+  - ansible-galaxy install geerlingguy.java
   - ansible-galaxy install abelboldu.midonet-repos
-  
+
 
 script:
 # Check the role/playbook's syntax.

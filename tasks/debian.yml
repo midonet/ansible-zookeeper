@@ -1,8 +1,5 @@
 ---
 
-- name: Install openjdk 7
-  apt: name=openjdk-7-jre-headless state=present
-
 - name: Install Zookeeper
   apt: name=zookeeper update_cache=yes
 

@@ -32,6 +32,7 @@ zookeeper_hosts: '{{ groups["zookeper"] }}'
 Dependencies
 ------------
 
+Java ( geerlingguy.java )
 Midonet repositories ( abelboldu.midonet-repos )
 
 Example Playbook

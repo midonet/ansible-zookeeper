@@ -20,3 +20,4 @@ galaxy_info:
 
 dependencies: 
   - { role: abelboldu.midonet-repos }
+  - { role: geerlingguy.java }
