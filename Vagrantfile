@@ -55,7 +55,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   # View the documentation for the provider you're using for more
   # information on available options.
-
+  #
+  # Enable provisioning with Ansible.
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "tests/test.yml"
+  end
+  #
   # Enable provisioning with Puppet stand alone.  Puppet manifests
   # are contained in a directory path relative to this Vagrantfile.
   # You will need to create the manifests directory and a manifest in
