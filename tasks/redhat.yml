@@ -1,5 +1,10 @@
 ---
 
+- name: Install EPEL repo.
+  yum:
+    name: "{{ epel_repo_url }}"
+    state: present
+
 - name: Install Zookeeper (RedHat7)
   yum: name={{ item }} state=present
   with_items:
@@ -7,16 +12,9 @@
     - zookeeper
     - nmap-ncat
     - zkdump
-  when: ansible_distribution_version.split(".")[0] == '7'
 
-- name: Install Zookeeper (RedHat6)
-  yum: name={{ item }} state=present
-  with_items:
-    - java-1.7.0-openjdk
-    - zookeeper
-    - nc
-    - zkdump
-  when: ansible_distribution_version.split(".")[0] == '6'
+- name: Force systemd daemon reload
+  command: systemctl daemon-reload
 
 - file: path=/usr/java state=directory
 
