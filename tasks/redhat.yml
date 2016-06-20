@@ -23,5 +23,5 @@
 - template: src=myid dest=/var/lib/zookeeper/myid
 
 - template: src=zoo.cfg dest=/etc/zookeeper/zoo.cfg
-  notify: 
+  notify:
     - Restart zookeeper
