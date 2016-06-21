@@ -1,9 +1,7 @@
 ---
 
-- name: Install EPEL repo.
-  yum:
-    name: "{{ epel_repo_url }}"
-    state: present
+- name: Install EPEL repo
+  yum: name="epel-release" state=present
 
 - name: Install Zookeeper (RedHat7)
   yum: name={{ item }} state=present
