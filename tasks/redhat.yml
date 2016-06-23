@@ -1,5 +1,19 @@
 ---
 
+- name: Install EPEL repo
+  yum: name="epel-release" state=present
+
+- name: Install Zookeeper (RedHat7)
+  yum: name={{ item }} state=present
+  with_items:
+    - java-1.7.0-openjdk-headless
+    - zookeeper
+    - nmap-ncat
+    - zkdump
+
+- name: Force systemd daemon reload
+  command: systemctl daemon-reload
+
 - file: path=/usr/java state=directory
 
 - file: src=/etc/alternatives/jre_openjdk dest=/usr/java/default state=link
