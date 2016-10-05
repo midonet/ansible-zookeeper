@@ -19,5 +19,5 @@ galaxy_info:
   - database
 
 dependencies: 
-  - { role: abelboldu.midonet-repos }
-  - { role: geerlingguy.java }
+  - { role: ansible-midonet-repo }
+

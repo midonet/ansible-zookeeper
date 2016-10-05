@@ -33,7 +33,7 @@ Dependencies
 ------------
 
 Java ( geerlingguy.java )
-Midonet repositories ( abelboldu.midonet-repos )
+Midonet repositories ( ansible-midonet-repo )
 
 Example Playbook
 ----------------
@@ -41,7 +41,7 @@ Example Playbook
 ```
 hosts: zookeeper
   roles:
-    - role: abelboldu.zookeeper
+    - role: ansible-zookeeper
       zookeeper_hosts: '{{ groups["zookeeper"] }}'
 ```
 

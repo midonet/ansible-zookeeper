@@ -3,10 +3,9 @@
 - name: Install EPEL repo
   yum: name="epel-release" state=present
 
-- name: Install Zookeeper (RedHat7)
+- name: Install Zookeeper
   yum: name={{ item }} state=present
   with_items:
-    - java-1.7.0-openjdk-headless
     - zookeeper
     - nmap-ncat
     - zkdump
