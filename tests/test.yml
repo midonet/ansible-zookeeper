@@ -3,21 +3,14 @@
 - hosts: zookeeper
   remote_user: root
   become: True
-  tasks:
-    - name: Installing repo for Java 8 in Ubuntu
-      apt_repository: repo='ppa:openjdk-r/ppa'
-      when: "ansible_distribution_release == 'trusty'"
 
 - hosts: zookeeper
   remote_user: root
   become: True
   roles:
-    - role: geerlingguy.java
-      when: "ansible_os_family == 'Debian'"
-      java_packages:
-        - openjdk-8-jdk
-    - role: abelboldu.midonet-repos
-      midonet_version: current
+    - role: ansible-midonet-repo
+      midonet_version: 5.2
+      mem: False
     - role: ansible-zookeeper
       zookeeper_hosts: '{{ groups["zookeeper"] }}'
   post_tasks:
