@@ -22,4 +22,3 @@
 - assert:
     that:
       - "'imok' in zk_ruok.stdout"
-
