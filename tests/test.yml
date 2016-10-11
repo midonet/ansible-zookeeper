@@ -1,18 +1,15 @@
 ---
 
-- hosts: zookeeper
-  remote_user: root
+- hosts: all
   become: True
 
-- hosts: zookeeper
-  remote_user: root
-  become: True
   roles:
-    - role: ansible-midonet-repo
-      midonet_version: 5.2
-      mem: False
+    - role: midonet-repo
+
     - role: ansible-zookeeper
-      zookeeper_hosts: '{{ groups["zookeeper"] }}'
+      zookeeper_hosts:
+        - '{{ inventory_hostname }}'
+
   post_tasks:
     - name: Check id
       debug:
