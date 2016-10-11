@@ -1,0 +1,35 @@
+---
+
+- name: Install EPEL repo
+  yum:
+    name: 'epel-release'
+    state: present
+
+- name: Install Zookeeper
+  yum:
+    name: 'zookeeper'
+    state: present
+  register: zookeeper_zookeeper_package
+
+- name: Install Zookeeper
+  yum:
+    name: '{{ item }}'
+    state: present
+  with_items:
+    - 'nmap-ncat'
+    - 'zkdump'
+
+- name: Force systemd daemon reload
+  command: 'systemctl daemon-reload'
+  when: zookeeper_zookeeper_package|changed
+
+- name: Create /usr/java directory
+  file:
+    path: '/usr/java'
+    state: directory
+
+- name: Create JAVA_HOME symbolic link
+  file:
+    src: '/etc/alternatives/jre_openjdk'
+    dest: '/usr/java/default'
+    state: link

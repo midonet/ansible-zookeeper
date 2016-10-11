@@ -1,4 +1,5 @@
 ---
+
 galaxy_info:
   author: Abel Boldú
   description: Zookeeper cluster role for MidoNet deployments.
