@@ -1,3 +1,15 @@
 ---
-- set_fact:
-    myid: "{{ zookeeper_hosts.index(inventory_hostname)|int + 1 }}"
+
+- name: Set common fact amongst all distros
+  set_fact:
+    zookeeper_myid: '{{ zookeeper_hosts.index(inventory_hostname)|int + 1 }}'
+
+- name: Set fact specific to RedHat
+  set_fact:
+    zookeeper_configuration_file_path: '/etc/zookeeper/zoo.cfg'
+  when: ansible_os_family == 'RedHat'
+
+- name: Set fact specific to Ubuntu
+  set_fact:
+    zookeeper_configuration_file_path: '/etc/zookeeper/conf/zoo.cfg'
+  when: ansible_os_family == 'Debian'

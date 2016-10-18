@@ -1,0 +1,13 @@
+---
+
+- name: Create configuration file
+  template:
+    src: 'zoo.cfg'
+    dest: '{{ zookeeper_configuration_file_path }}'
+  notify:
+    - Restart zookeeper
+
+- name: Create myid file
+  template:
+    src: 'myid'
+    dest: '/var/lib/zookeeper/myid'
