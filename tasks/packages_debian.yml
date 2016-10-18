@@ -6,5 +6,10 @@
     state: present
   with_items:
     - 'netcat-openbsd'
-    - 'zkdump'
     - 'zookeeperd'
+
+- name: Install zkdump
+  apt:
+    name: 'zkdump'
+    state: present
+  when: zookeeper_install_zkdump|default(False)
