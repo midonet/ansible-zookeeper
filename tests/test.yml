@@ -13,4 +13,4 @@
   post_tasks:
     - name: Check id
       debug:
-        var: hostvars['ubuntu']['myid']
+        var: hostvars['{{ inventory_hostname }}']['zookeeper_myid']
